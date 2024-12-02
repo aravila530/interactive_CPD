@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Interactive CPD Map</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="custom.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">Interactive CPD Map</h1>
+        <p class="subtitle">
+          Explore investigatory and gang-related stops in Chicago from 2016-2023.
+        </p>
+
+        <div>
+          <p>
+            This map visualizes investigatory and gang-related stops conducted
+            by the Chicago Police Department throughout the years. Use the slider and buttons to
+            explore how stops have evolved over time, district by district.
+          </p>
+        </div>
+
+        <div id="controls">
+          <button id="invstgButton" class="button">INVSTG</button>
+          <button id="gangltrButton" class="button">GANGLTR</button>
+          <input
+            id="yearSlider"
+            class="input"
+            type="range"
+            min="2016"
+            max="2023"
+            value="2016"
+          />
+          <span id="yearDisplay">2016</span>
+        </div>
+
+        <div id="map"></div>
+        <div id="tooltip"></div> 
+      </div>
+    </section>
+
+    <script src="map.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
