@@ -91,4 +91,13 @@ combined_data.fillna({
 }, inplace=True)
 combined_data['name'] = combined_data['name'].fillna('NONE')
 
+
 combined_data.to_csv("ISR_2016_2023_Cleaned.csv", index=False)
+combined_data = pd.read_csv("ISR_2016_2023_Cleaned.csv")
+
+
+subset_data = combined_data[['contact_type_cd', 'district', 'year']]
+
+grouped_data = subset_data.groupby(['year', 'district', 'contact_type_cd']).size().reset_index(name='count')
+
+grouped_data.to_csv("Clean.csv", index=False)

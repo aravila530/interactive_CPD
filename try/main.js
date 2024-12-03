@@ -18,11 +18,12 @@ d3.json("data/Police_Districts.geojson").then((geo) => {
     }
   })
 
-d3.csv("data/ISR_2016_2023_Cleaned.csv").then((data) => {
+d3.csv("data/clean.csv").then((data) => {
     mapData = data.map((d) => ({
       year: +d.year, 
       contactType: d.contact_type_cd, 
-      district: +d.district, 
+      district: +d.district,
+      count: +d.count 
     }));
     if (geoData && surroundingGeoData) {
       initializeMap(); 
