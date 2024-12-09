@@ -28,10 +28,23 @@ d3.csv("Data/base_data.csv").then((data) => {
   if (geoData && surroundingGeoData) {
     initializeMap();
   }
-});
+
+  //Fixed Scale
+  maxCountGlobal = d3.max(mapData, (d) => d.count);
+  colorScale = d3
+      .scaleSequential(d3.interpolateReds)
+      .domain([0, maxCountGlobal]);
+
+    if (geoData && surroundingGeoData) {
+      initializeMap();
+    }
+  });
 
 function initializeMap() {
   svg = drawMap("#map", geoData, mapData, currentYear, contactType);
+
+  //Fixed legend
+  addLegend(svg, colorScale, maxCountGlobal);
 
   //Year slider
   d3.select("#yearSlider").on("input", function () {
