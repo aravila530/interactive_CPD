@@ -3,21 +3,21 @@ let contactType = "INVSTG";
 let mapData, geoData, svg, surroundingGeoData;
 
 //Load Data
-d3.json("data/IL.geojson").then((geo) => {
+d3.json("Data/IL.geojson").then((geo) => {
   surroundingGeoData = geo;
   if (geoData && mapData) {
     initializeMap();
   }
 });
 
-d3.json("data/Police_Districts.geojson").then((geo) => {
+d3.json("Data/Police_Districts.geojson").then((geo) => {
   geoData = geo;
   if (surroundingGeoData && mapData) {
     initializeMap();
   }
 });
 
-d3.csv("data/base_data.csv").then((data) => {
+d3.csv("Data/base_data.csv").then((data) => {
   mapData = data.map((d) => ({
     year: +d.year,
     contactType: d.contact_type_cd,
