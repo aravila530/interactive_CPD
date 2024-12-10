@@ -84,4 +84,6 @@ button.active {
   fill: #333;
 }
 
-  
+strong {
+  color: black;
+}

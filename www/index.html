@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,6 +10,7 @@
     <link rel="stylesheet" href="custom.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
   </head>
+
   <body>
     <section class="section">
       <div class="container">
@@ -18,17 +18,28 @@
         <p class="subtitle">
           Explore investigatory and gang-related stops in Chicago from 2016-2023
         </p>
-
         <div>
           <p>
-            This map visualizes investigatory and gang-related stops conducted
-            by the Chicago Police Department throughout the years. Use the slider to
-            explore how stops have evolved over time throughout districts. Stops 
-            are separated by investigatory and gang-related; therefore, use the buttons
-            to see the differences as well.
+            This interactive map visualizes investigatory and gang-related stops conducted
+            by the Chicago Police Department from 2016 to 2023. The map allows users to explore trends 
+            and patterns in police stops across Chicago's districts over time. Use the year slider to examine 
+            how stops evolved during different time periods and under varying political leadership.
+          </p>
+          <p>
+            Key changes in Chicago's leadership during this period:
+              <li><strong>Rahm Emanuel (2011–2019):</strong> Policies during Emanuel's tenure included 
+              heightened police oversight following high-profile incidents and attention to police accountability.</li>
+              <li><strong>Lori Lightfoot (2019–2023):</strong> Lightfoot's term emphasized police reform, 
+              community engagement, and budget reallocations aimed to address systemic inequities.</li>
+              <li><strong>Brandon Johnson (2023–present):</strong> Johnson's focus includes reshaping public safety initiatives 
+              and investing in alternative approaches to community well-being.</li>
+          </p>
+          <p>
+            Use the buttons to switch between investigatory and gang-related stops, and explore the relationship between policing 
+            strategies and changes in mayoral leadership or policies. This tool highlights how public safety practices have adapted 
+            over time, providing insights into broader socio-political trends in Chicago.
           </p>
         </div>
-
         <div id="controls">
           <button id="invstgButton" class="button" data-type="INVSTG">Investigatory Stops</button>
           <button id="gangltrButton" class="button" data-type="GANGLTR">Gang-Related Stops</button>
@@ -42,12 +53,18 @@
           />
           <span id="yearDisplay">2016</span>
         </div>
-
         <div id="map"></div>
         <div id="tooltip"></div> 
       </div>
     </section>
-
+    <footer class="section">
+      <div class="container">
+        <p>
+          Data Source: <a href="https://www.chicagopolice.org/statistics-data/isr-data/" target="_blank">
+            Chicago Police Department ISR Data</a>.
+        </p>
+      </div>
+    </footer>
     <script src="map.js"></script>
     <script src="main.js"></script>
   </body>

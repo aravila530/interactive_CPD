@@ -1,6 +1,6 @@
 function drawMap(container, geoData, mapData, year, type) {
-  const width = 600; 
-  const height = 500; 
+  const width = 600;
+  const height = 500;
 
   d3.select(container).selectAll("svg").remove();
 
@@ -9,7 +9,7 @@ function drawMap(container, geoData, mapData, year, type) {
     .append("svg")
     .attr("width", width)
     .attr("height", height)
-    .style("display", "block") 
+    .style("display", "block")
     .style("margin", "0 auto");
 
   const projection = d3.geoMercator().fitSize([width, height], geoData);
@@ -33,7 +33,7 @@ function drawMap(container, geoData, mapData, year, type) {
     .attr("stroke", "#999")
     .attr("fill", "#999");
 
-  //Chicago Police Districts
+  //Chicago Police District
   svg.selectAll(".chicago")
     .data(geoData.features)
     .enter()
@@ -52,13 +52,8 @@ function updateMap(mapData, geoData, year, type, svg) {
     (d) => d.year === year && d.contactType === type
   );
 
-  const maxCount = d3.max(filteredData.map((d) => d.count)) || 0;
-
-  const colorScale = d3
-    .scaleSequential(d3.interpolateReds) 
-    .domain([0, maxCount]);
-
   const counts = new Map(filteredData.map((d) => [d.district, d.count]));
+  const colorScale = getColorScale();
 
   svg.selectAll(".chicago")
     .data(geoData.features)
@@ -87,7 +82,7 @@ function updateMap(mapData, geoData, year, type, svg) {
     })
     .on("mouseout", () => d3.select("#tooltip").style("display", "none"));
 
-  addLegend(svg, colorScale, maxCount);
+  addLegend(svg, colorScale, getMaxCount());
 }
 
 function addLegend(svg, colorScale, maxCount) {
@@ -114,10 +109,10 @@ function addLegend(svg, colorScale, maxCount) {
     .attr("y2", "0%");
 
   //Create an array of gradient stops --each representing a position in the color gradient
-  const stops = d3.range(0, 1.01, 0.1).map((t) => ({ 
-    offset: `${t * 100}%`, //Position
+  const stops = d3.range(0, 1.01, 0.1).map((t) => ({
+    offset: `${t * 100}%`,
     //Using the color scale to calculate the corresponding color for this position
-    color: colorScale(t * maxCount), 
+    color: colorScale(t * maxCount),
   }));
   //Going through each gradient stop and adds it to the gradient
   //sets its position and corresponding color
@@ -135,7 +130,7 @@ function addLegend(svg, colorScale, maxCount) {
     .style("stroke", "#000");
 
   //Scale
-    const legendScale = d3
+  const legendScale = d3
     .scaleLinear()
     .domain([0, maxCount])
     .range([0, legendWidth]);
